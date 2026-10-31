@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Biomédica Río Cuarto</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #176b87;
+            color: white;
+            padding: 20px 35px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        header p {
+            margin-bottom: 0;
+        }
+
+        nav {
+            background-color: #ffffff;
+            padding: 15px 35px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav a {
+            margin-right: 25px;
+            color: #176b87;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .tarjeta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #176b87;
+        }
+
+        .tarjeta h3 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .tarjeta .numero {
+            font-size: 34px;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        .advertencia {
+            border-left-color: #f0ad4e;
+        }
+
+        .peligro {
+            border-left-color: #dc3545;
+        }
+
+        .correcto {
+            border-left-color: #28a745;
+        }
+
+        .seccion {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #eef4f7;
+        }
+
+        .vencido {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .proximo {
+            color: #d98b00;
+            font-weight: bold;
+        }
+
+        .vacio {
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            header, nav {
+                padding: 20px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Biomédica Río Cuarto</h1>
+        <p>Panel de control de inventario</p>
+    </header>
+
+    <nav>
+        <a href="{% url 'core:dashboard' %}">Inicio</a>
+        <a href="/productos/">Productos</a>
+        <a href="/proveedores/">Proveedores</a>
+        <a href="/admin/">Administración</a>
+    </nav>
+
+    <main>
+        <h2>Resumen general</h2>
+        <p>Información actualizada del inventario.</p>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+                <h3>Productos registrados</h3>
+                <p class="numero">{{ total_productos }}</p>
+            </div>
+
+            <div class="tarjeta correcto">
+                <h3>Unidades en stock</h3>
+                <p class="numero">{{ stock_total }}</p>
+            </div>
+
+            <div class="tarjeta advertencia">
+                <h3>Productos con stock bajo</h3>
+                <p class="numero">{{ productos_stock_bajo }}</p>
+            </div>
+
+            <div class="tarjeta peligro">
+                <h3>Productos sin stock</h3>
+                <p class="numero">{{ productos_sin_stock }}</p>
+            </div>
+
+            <div class="tarjeta advertencia">
+                <h3>Lotes próximos a vencer</h3>
+                <p class="numero">{{ total_proximos }}</p>
+            </div>
+
+            <div class="tarjeta peligro">
+                <h3>Lotes vencidos</h3>
+                <p class="numero">{{ total_vencidos }}</p>
+            </div>
+
+        </div>
+
+        <section class="seccion">
+            <h2>Lotes próximos a vencer</h2>
+            <p>Productos que vencen dentro de los próximos 30 días.</p>
+
+            {% if lotes_proximos %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>N.º de lote</th>
+                            <th>Vencimiento</th>
+                            <th>Cantidad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for lote in lotes_proximos %}
+                            <tr>
+                                <td>{{ lote.producto.nombre }}</td>
+                                <td>{{ lote.numero_lote }}</td>
+                                <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                                <td>{{ lote.cantidad_disponible }}</td>
+                                <td class="proximo">Próximo a vencer</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="vacio">No hay lotes próximos a vencer.</p>
+            {% endif %}
+        </section>
+
+        <section class="seccion">
+            <h2>Lotes vencidos</h2>
+
+            {% if lotes_vencidos %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>N.º de lote</th>
+                            <th>Vencimiento</th>
+                            <th>Cantidad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for lote in lotes_vencidos %}
+                            <tr>
+                                <td>{{ lote.producto.nombre }}</td>
+                                <td>{{ lote.numero_lote }}</td>
+                                <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                                <td>{{ lote.cantidad_disponible }}</td>
+                                <td class="vencido">Vencido</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="vacio">No hay lotes vencidos.</p>
+            {% endif %}
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+:root {
+  --bm-orange: #F26A0F;
+  --bm-orange-dark: #C9540A;
+  --bm-ink: #1A1A1A;
+  --bm-grey: #6B6B6B;
+  --bm-paper: #FFFFFF;
+  --bm-mist: #F5F5F4;
+  --bs-primary: var(--bm-orange);
+  --bs-primary-rgb: 242, 106, 15;
+  --bs-body-color: var(--bm-ink);
+  --bs-link-color: var(--bm-orange-dark);
+}
+body { background: var(--bm-mist); font-family: "Helvetica Neue", Arial, sans-serif; }
+.btn-primary { --bs-btn-bg: var(--bm-orange); --bs-btn-border-color: var(--bm-orange);
+  --bs-btn-hover-bg: var(--bm-orange-dark); --bs-btn-hover-border-color: var(--bm-orange-dark);
+  --bs-btn-active-bg: var(--bm-orange-dark); }
+.bm-nav { background: var(--bm-ink); }
+.bm-nav .nav-link { color: #ddd; }
+.bm-nav .nav-link:hover, .bm-nav .nav-link:focus-visible { color: var(--bm-orange); }
+.bm-logo { height: 38px; width: auto; }
+.estado-vencido { color: #B42318; } .estado-proximo { color: #B54708; } .estado-vigente { color: #067647; }

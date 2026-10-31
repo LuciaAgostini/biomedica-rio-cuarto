@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Ingresar · Biomédica{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-md-5 col-lg-4">
+  <div class="text-center mb-4"><img src="{% static 'img/logo-principal.png' %}" alt="Biomédica Río Cuarto" class="img-fluid" style="max-height:220px;object-fit:contain"></div>
+  <form method="post" class="card card-body">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary w-100">Ingresar</button>
+  </form>
+</div></div>
+{% endblock %}

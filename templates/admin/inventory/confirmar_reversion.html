@@ -1,0 +1,56 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+
+<h2>Confirmar reversión de descarte</h2>
+
+<p>¿Estás segura de que querés revertir este descarte?</p>
+
+<table>
+    <tr>
+        <th>Producto:</th>
+        <td>{{ descarte.lote.producto.nombre }}</td>
+    </tr>
+    <tr>
+        <th>Número de lote:</th>
+        <td>{{ descarte.lote.numero_lote }}</td>
+    </tr>
+    <tr>
+        <th>Cantidad a recuperar:</th>
+        <td>{{ descarte.cantidad }}</td>
+    </tr>
+    <tr>
+        <th>Motivo del descarte:</th>
+        <td>{{ descarte.motivo }}</td>
+    </tr>
+</table>
+
+<p>
+    <strong>Importante:</strong>
+    Al confirmar, el lote volverá al inventario
+    con la cantidad que tenía antes del descarte.
+</p>
+
+<p>
+    Confirmá únicamente si la mercadería sigue disponible
+    físicamente y está en condiciones de uso.
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="action" value="revertir_descartes">
+    <input type="hidden" name="_selected_action" value="{{ descarte.pk }}">
+    <input type="hidden" name="confirmar_reversion" value="1">
+    <input type="hidden" name="index" value="0">
+
+    <button type="submit" class="default">
+        Confirmar reversión
+    </button>
+
+    <a href="{% url 'admin:inventory_descarte_changelist' %}">
+        Cancelar
+    </a>
+</form>
+
+{% endblock %}
