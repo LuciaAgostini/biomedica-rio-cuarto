@@ -41,386 +41,187 @@
         </div>
     </section>
 
-    <section class="bm-dashboard-section">
+    <section class="bm-dashboard-section bm-modern-section">
 
         <div class="bm-section-heading">
             <div>
+                <span class="bm-modern-label">GESTIÓN RÁPIDA</span>
                 <h2>Accesos rápidos</h2>
-                <p>Administrá las principales áreas del sistema.</p>
+                <p>Todo lo que necesitás para administrar tu inventario.</p>
             </div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-3">
 
             <div class="col-md-6 col-xl-4">
                 <a href="{% url 'catalog:producto_list' %}"
-                   class="bm-access-card">
+                   class="bm-modern-access-card">
 
-                    <div class="bm-access-icon bm-icon-orange">
-                        <span aria-hidden="true">▦</span>
+                    <div class="bm-modern-access-top">
+                        <div class="bm-modern-access-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+
+                        <span class="bm-modern-access-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </span>
                     </div>
 
-                    <div class="bm-access-content">
+                    <div class="bm-modern-access-body">
                         <h3>Productos</h3>
                         <p>
-                            Consultá y administrá los productos
-                            registrados en el inventario.
+                            Consultá y administrá tu catálogo de productos.
                         </p>
                     </div>
 
-                    <div class="bm-access-footer">
-                        <span>Ver productos</span>
-                        <span aria-hidden="true">→</span>
-                    </div>
+                    <span class="bm-modern-access-link">
+                        Gestionar productos
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
 
                 </a>
             </div>
 
             <div class="col-md-6 col-xl-4">
                 <a href="/proveedores/"
-                   class="bm-access-card">
+                   class="bm-modern-access-card">
 
-                    <div class="bm-access-icon bm-icon-peach">
-                        <span aria-hidden="true">▤</span>
+                    <div class="bm-modern-access-top">
+                        <div class="bm-modern-access-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+
+                        <span class="bm-modern-access-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </span>
                     </div>
 
-                    <div class="bm-access-content">
+                    <div class="bm-modern-access-body">
                         <h3>Proveedores</h3>
                         <p>
-                            Gestioná los proveedores de insumos
-                            médicos y de laboratorio.
+                            Organizá los proveedores de tus insumos.
                         </p>
                     </div>
 
-                    <div class="bm-access-footer">
-                        <span>Ver proveedores</span>
-                        <span aria-hidden="true">→</span>
-                    </div>
+                    <span class="bm-modern-access-link">
+                        Ver proveedores
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
 
                 </a>
             </div>
 
             <div class="col-md-6 col-xl-4">
                 <a href="{% url 'inventory:lote_list' %}"
-                   class="bm-access-card">
+                   class="bm-modern-access-card">
 
-                    <div class="bm-access-icon bm-icon-cream">
-                        <span aria-hidden="true">▣</span>
+                    <div class="bm-modern-access-top">
+                        <div class="bm-modern-access-icon">
+                            <i class="bi bi-boxes"></i>
+                        </div>
+
+                        <span class="bm-modern-access-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </span>
                     </div>
 
-                    <div class="bm-access-content">
+                    <div class="bm-modern-access-body">
                         <h3>Lotes</h3>
                         <p>
-                            Controlá los lotes, sus cantidades
-                            disponibles y fechas de vencimiento.
+                            Controlá cantidades y fechas de vencimiento.
                         </p>
                     </div>
 
-                    <div class="bm-access-footer">
-                        <span>Ver lotes</span>
-                        <span aria-hidden="true">→</span>
-                    </div>
+                    <span class="bm-modern-access-link">
+                        Controlar lotes
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
 
                 </a>
             </div>
 
         </div>
+
     </section>
 
-    <section class="bm-dashboard-section">
+    <section class="bm-dashboard-section bm-modern-section">
 
         <div class="bm-section-heading">
             <div>
-                <h2>Resumen del inventario</h2>
-                <p>Información general del stock registrado.</p>
-            </div>
-        </div>
+                <span class="bm-modern-label">SEGUIMIENTO</span>
 
-        <div class="row g-4">
-
-            <div class="col-md-6 col-xl-4">
-                <div class="bm-summary-card">
-
-                    <div class="bm-summary-top">
-                        <span class="bm-summary-icon bm-summary-orange">
-                            ▦
-                        </span>
-                        <span class="bm-summary-tag">
-                            Productos
-                        </span>
-                    </div>
-
-                    <div class="bm-summary-number">
-                        {{ total_productos }}
-                    </div>
-
-                    <p>Productos registrados</p>
-
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="bm-summary-card">
-
-                    <div class="bm-summary-top">
-                        <span class="bm-summary-icon bm-summary-green">
-                            ◈
-                        </span>
-                        <span class="bm-summary-tag">
-                            Disponible
-                        </span>
-                    </div>
-
-                    <div class="bm-summary-number">
-                        {{ stock_total }}
-                    </div>
-
-                    <p>Unidades en stock</p>
-
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="bm-summary-card">
-
-                    <div class="bm-summary-top">
-                        <span class="bm-summary-icon bm-summary-yellow">
-                            !
-                        </span>
-                        <span class="bm-summary-tag">
-                            Atención
-                        </span>
-                    </div>
-
-                    <div class="bm-summary-number">
-                        {{ productos_stock_bajo }}
-                    </div>
-
-                    <p>Productos con stock bajo</p>
-
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="bm-summary-card">
-
-                    <div class="bm-summary-top">
-                        <span class="bm-summary-icon bm-summary-red">
-                            ×
-                        </span>
-                        <span class="bm-summary-tag">
-                            Sin disponibilidad
-                        </span>
-                    </div>
-
-                    <div class="bm-summary-number">
-                        {{ productos_sin_stock }}
-                    </div>
-
-                    <p>Productos sin stock</p>
-
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="bm-summary-card">
-
-                    <div class="bm-summary-top">
-                        <span class="bm-summary-icon bm-summary-yellow">
-                            ◷
-                        </span>
-                        <span class="bm-summary-tag">
-                            Próximos 30 días
-                        </span>
-                    </div>
-
-                    <div class="bm-summary-number">
-                        {{ total_proximos }}
-                    </div>
-
-                    <p>Lotes próximos a vencer</p>
-
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="bm-summary-card">
-
-                    <div class="bm-summary-top">
-                        <span class="bm-summary-icon bm-summary-red">
-                            !
-                        </span>
-                        <span class="bm-summary-tag">
-                            Vencimiento
-                        </span>
-                    </div>
-
-                    <div class="bm-summary-number">
-                        {{ total_vencidos }}
-                    </div>
-
-                    <p>Lotes vencidos</p>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="bm-dashboard-section">
-
-        <div class="bm-section-heading">
-            <div>
-                <h2>Control de vencimientos</h2>
-                <p>
-                    Seguimiento de los lotes próximos a vencer
-                    y vencidos.
-                </p>
-            </div>
-
-            <a href="{% url 'inventory:lote_list' %}"
-               class="bm-section-link">
-                Ver todos los lotes →
-            </a>
-        </div>
-
-        <div class="bm-table-card mb-4">
-
-            <div class="bm-table-header">
-                <div class="bm-table-heading">
-                    <span class="bm-alert-dot bm-dot-yellow"></span>
-                    <h3>Lotes próximos a vencer</h3>
-                </div>
+                <h2>Mantené tu inventario bajo control</h2>
 
                 <p>
-                    Vencen dentro de los próximos 30 días.
+                    Accedé rápidamente al control de stock
+                    y vencimientos.
                 </p>
             </div>
-
-            {% if lotes_proximos %}
-
-            <div class="table-responsive">
-                <table class="table bm-dashboard-table align-middle">
-
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>N.º de lote</th>
-                            <th>Vencimiento</th>
-                            <th>Cantidad</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for lote in lotes_proximos %}
-
-                        <tr>
-                            <td>
-                                <strong>{{ lote.producto.nombre }}</strong>
-                            </td>
-
-                            <td>{{ lote.numero_lote }}</td>
-
-                            <td>
-                                {{ lote.fecha_vencimiento|date:"d/m/Y" }}
-                            </td>
-
-                            <td>{{ lote.cantidad_disponible }}</td>
-
-                            <td>
-                                <span class="bm-status bm-status-warning">
-                                    Próximo a vencer
-                                </span>
-                            </td>
-                        </tr>
-
-                        {% endfor %}
-                    </tbody>
-
-                </table>
-            </div>
-
-            {% else %}
-
-            <div class="bm-empty-state">
-                <span class="bm-empty-icon bm-empty-success">
-                    ✓
-                </span>
-                <p>No hay lotes próximos a vencer.</p>
-            </div>
-
-            {% endif %}
-
         </div>
 
-        <div class="bm-table-card">
+        <div class="row g-3">
 
-            <div class="bm-table-header">
-                <div class="bm-table-heading">
-                    <span class="bm-alert-dot bm-dot-red"></span>
-                    <h3>Lotes vencidos</h3>
-                </div>
+            <div class="col-md-6">
+                <a href="{% url 'catalog:producto_list' %}"
+                   class="bm-modern-access-card">
 
-                <p>
-                    Lotes que superaron su fecha de vencimiento.
-                </p>
+                    <div class="bm-modern-access-top">
+                        <div class="bm-modern-access-icon">
+                            <i class="bi bi-clipboard-data"></i>
+                        </div>
+
+                        <span class="bm-modern-access-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </span>
+                    </div>
+
+                    <div class="bm-modern-access-body">
+                        <h3>Controlá tu stock</h3>
+
+                        <p>
+                            Consultá tus productos, verificá las cantidades
+                            disponibles y mantené actualizado tu inventario.
+                        </p>
+                    </div>
+
+                    <span class="bm-modern-access-link">
+                        Ir a productos
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
+
+                </a>
             </div>
 
-            {% if lotes_vencidos %}
+            <div class="col-md-6">
+                <a href="{% url 'inventory:lote_list' %}"
+                   class="bm-modern-access-card">
 
-            <div class="table-responsive">
-                <table class="table bm-dashboard-table align-middle">
+                    <div class="bm-modern-access-top">
+                        <div class="bm-modern-access-icon">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
 
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>N.º de lote</th>
-                            <th>Vencimiento</th>
-                            <th>Cantidad</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
+                        <span class="bm-modern-access-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </span>
+                    </div>
 
-                    <tbody>
-                        {% for lote in lotes_vencidos %}
+                    <div class="bm-modern-access-body">
+                        <h3>Controlá tus vencimientos</h3>
 
-                        <tr>
-                            <td>
-                                <strong>{{ lote.producto.nombre }}</strong>
-                            </td>
+                        <p>
+                            Revisá las fechas de vencimiento de tus lotes
+                            y controlá los productos próximos a vencer.
+                        </p>
+                    </div>
 
-                            <td>{{ lote.numero_lote }}</td>
+                    <span class="bm-modern-access-link">
+                        Ir a lotes
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
 
-                            <td>
-                                {{ lote.fecha_vencimiento|date:"d/m/Y" }}
-                            </td>
-
-                            <td>{{ lote.cantidad_disponible }}</td>
-
-                            <td>
-                                <span class="bm-status bm-status-danger">
-                                    Vencido
-                                </span>
-                            </td>
-                        </tr>
-
-                        {% endfor %}
-                    </tbody>
-
-                </table>
+                </a>
             </div>
-
-            {% else %}
-
-            <div class="bm-empty-state">
-                <span class="bm-empty-icon bm-empty-success">
-                    ✓
-                </span>
-                <p>No hay lotes vencidos.</p>
-            </div>
-
-            {% endif %}
 
         </div>
 
