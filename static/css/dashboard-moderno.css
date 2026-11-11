@@ -1,0 +1,294 @@
+.bm-modern-section {
+    margin-bottom: 36px;
+}
+
+.bm-modern-label {
+    display: inline-block;
+    margin-bottom: 9px;
+    color: var(--bm-orange-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.bm-modern-section .bm-section-heading {
+    margin-bottom: 20px;
+}
+
+.bm-modern-section .bm-section-heading h2 {
+    font-size: 23px;
+    font-weight: 750;
+    margin-bottom: 7px;
+}
+
+.bm-modern-section .bm-section-heading p {
+    font-size: 13px;
+    color: #777777;
+    line-height: 1.6;
+}
+
+.bm-modern-access-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 215px;
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #EEE7E1;
+    border-radius: 18px;
+    color: #242424;
+    text-decoration: none;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.bm-modern-access-card:hover {
+    transform: translateY(-4px);
+    border-color: #F4BE98;
+    box-shadow: 0 12px 28px rgba(242, 106, 15, 0.09);
+    color: #242424;
+}
+
+.bm-modern-access-card:focus-visible {
+    outline: 3px solid rgba(242, 106, 15, 0.3);
+    outline-offset: 3px;
+}
+
+.bm-modern-access-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.bm-modern-access-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #FFF0E5;
+    color: #E66A17;
+    border-radius: 14px;
+    font-size: 23px;
+}
+
+.bm-modern-access-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #F0EAE5;
+    border-radius: 50%;
+    color: #999999;
+    font-size: 14px;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.bm-modern-access-card:hover .bm-modern-access-arrow {
+    background: var(--bm-orange);
+    color: #FFFFFF;
+}
+
+.bm-modern-access-body {
+    flex: 1;
+}
+
+.bm-modern-access-body h3 {
+    margin: 0 0 8px;
+    color: #242424;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.bm-modern-access-body p {
+    margin: 0 0 20px;
+    color: #777777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.bm-modern-access-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--bm-orange-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.bm-modern-access-link i {
+    font-size: 15px;
+    transition: transform 0.2s ease;
+}
+
+.bm-modern-access-card:hover .bm-modern-access-link i {
+    transform: translateX(4px);
+}
+
+.bm-modern-stock-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 185px;
+    padding: 22px;
+    background: #FFFFFF;
+    border: 1px solid #EEE7E1;
+    border-radius: 18px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.bm-modern-stock-card:hover {
+    transform: translateY(-3px);
+    border-color: #E8D8CD;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.045);
+}
+
+.bm-modern-stock-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.bm-modern-stock-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.bm-modern-stock-category {
+    display: inline-block;
+    max-width: 65%;
+    padding: 6px 10px;
+    background: #F8F7F5;
+    border-radius: 20px;
+    color: #777777;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: right;
+}
+
+.bm-modern-stock-number {
+    margin-bottom: 8px;
+    color: #242424;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
+
+.bm-modern-stock-card h3 {
+    margin: 0 0 7px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.bm-modern-stock-card p {
+    margin: 0;
+    color: #888888;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.bm-modern-section .bm-table-card {
+    border-radius: 18px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
+}
+
+.bm-modern-section .bm-table-header {
+    padding: 20px 24px;
+}
+
+.bm-modern-section .bm-dashboard-table thead th {
+    padding: 13px 20px;
+}
+
+.bm-modern-section .bm-dashboard-table tbody td {
+    padding: 14px 20px;
+}
+
+@media (max-width: 991px) {
+    .bm-modern-access-card {
+        min-height: 205px;
+    }
+
+    .bm-modern-stock-card {
+        min-height: 175px;
+    }
+}
+
+@media (max-width: 767px) {
+    .bm-modern-section {
+        margin-bottom: 30px;
+    }
+
+    .bm-modern-section .bm-section-heading h2 {
+        font-size: 21px;
+    }
+
+    .bm-modern-access-card {
+        min-height: 190px;
+        padding: 20px;
+    }
+
+    .bm-modern-stock-card {
+        min-height: 165px;
+        padding: 19px;
+    }
+
+    .bm-modern-stock-number {
+        font-size: 30px;
+    }
+
+    .bm-modern-section .bm-table-header {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bm-modern-access-card {
+        min-height: 180px;
+    }
+
+    .bm-modern-stock-category {
+        font-size: 10px;
+    }
+
+    .bm-modern-stock-number {
+        font-size: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bm-modern-access-card,
+    .bm-modern-access-arrow,
+    .bm-modern-access-link i,
+    .bm-modern-stock-card {
+        transition: none;
+    }
+
+    .bm-modern-access-card:hover,
+    .bm-modern-access-card:hover .bm-modern-access-link i,
+    .bm-modern-stock-card:hover {
+        transform: none;
+    }
+}

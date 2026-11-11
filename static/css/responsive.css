@@ -1,0 +1,157 @@
+@media (max-width: 991px) {
+    .bm-layout {
+        flex-direction: column;
+    }
+
+    .bm-sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        padding: 18px;
+    }
+
+    .bm-sidebar-header {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .bm-sidebar-logo {
+        max-width: 160px;
+    }
+
+    .bm-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .bm-menu-link {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .bm-sidebar-footer {
+        margin-top: 20px;
+        padding-top: 15px;
+        text-align: center;
+    }
+
+    .bm-logout {
+        max-width: 220px;
+    }
+
+    .bm-main {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .bm-welcome h1 {
+        font-size: 28px;
+    }
+
+    .bm-welcome {
+        padding: 35px;
+    }
+}
+
+@media (max-width: 767px) {
+    .bm-welcome {
+        padding: 30px 24px;
+        min-height: 230px;
+        border-radius: 17px;
+    }
+
+    .bm-welcome h1 {
+        font-size: 25px;
+    }
+
+    .bm-welcome p {
+        font-size: 14px;
+    }
+
+    .bm-welcome-decoration {
+        opacity: 0.45;
+    }
+
+    .bm-section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .bm-section-heading h2 {
+        font-size: 20px;
+    }
+
+    .bm-access-card {
+        min-height: auto;
+    }
+
+    .bm-summary-number {
+        font-size: 32px;
+    }
+
+    .bm-table-header {
+        padding: 22px;
+    }
+
+    .bm-empty-state {
+        padding: 22px;
+    }
+
+    .bm-main {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bm-welcome-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .bm-welcome-button {
+        width: 100%;
+    }
+
+    .bm-welcome h1 {
+        font-size: 23px;
+    }
+
+    .bm-access-card {
+        padding: 23px;
+    }
+
+    .bm-summary-card {
+        padding: 22px;
+    }
+
+    .bm-sidebar {
+        padding: 12px;
+    }
+
+    .bm-menu-link {
+        font-size: 13px;
+        padding: 9px 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .bm-menu-link,
+    .bm-menu-icon i,
+    .bm-logout,
+    .bm-welcome-button {
+        transition: none;
+    }
+
+    .btn:hover,
+    .bm-menu-link:hover,
+    .bm-menu-link:hover .bm-menu-icon i,
+    .bm-logout:hover,
+    .bm-welcome-button:hover {
+        transform: none;
+    }
+}
