@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Lotes | Biomédica Río Cuarto{% endblock %}
+
+{% block content %}
+
+<div class="mb-4">
+    <h2 class="fw-bold">Gestión de lotes</h2>
+    <p class="text-muted">
+        Consulta de lotes registrados en Biomédica Río Cuarto.
+    </p>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Proveedor</th>
+                        <th>N.º de lote</th>
+                        <th>Vencimiento</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for lote in lotes %}
+                    <tr>
+                        <td>{{ lote.producto.nombre }}</td>
+                        <td>{{ lote.proveedor.razon_social }}</td>
+                        <td>{{ lote.numero_lote }}</td>
+                        <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                        <td>{{ lote.cantidad_disponible }}</td>
+
+                        <td>
+                            {% if lote.estado == "Vencido" %}
+                                <span class="badge text-bg-danger">
+                                    Vencido
+                                </span>
+                            {% elif lote.estado == "Próximo a vencer" %}
+                                <span class="badge text-bg-warning">
+                                    Próximo a vencer
+                                </span>
+                            {% else %}
+                                <span class="badge text-bg-success">
+                                    Vigente
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            No hay lotes registrados.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

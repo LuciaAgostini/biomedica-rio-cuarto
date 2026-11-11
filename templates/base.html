@@ -2,35 +2,117 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Biomédica Río Cuarto{% endblock %}</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{% static 'css/biomedica.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Biomédica Río Cuarto{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/biomedica.css' %}?v=4" rel="stylesheet">
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg bm-nav" data-bs-theme="dark">
-  <div class="container">
-    <a class="navbar-brand" href="/"><img class="bm-logo" src="{% static 'img/logo-fondo-oscuro.png' %}" alt="Biomédica Río Cuarto"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="menu">
-      {% if user.is_authenticated %}
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'catalog:producto_list' %}">Productos</a></li>
-        {# TODO(equipo): proveedores, lotes, movimientos, vencimientos #}
-        {% if user.role == 'SUPERADMIN' %}
-        <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
-        {% endif %}
-      </ul>
-      <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-outline-light btn-sm">Cerrar sesión</button></form>
-      {% endif %}
-    </div>
-  </div>
-</nav>
-<main class="container py-4">
-  {% for m in messages %}<div class="alert alert-{{ m.tags|default:'info' }}" role="alert">{{ m }}</div>{% endfor %}
-  {% block content %}{% endblock %}
-</main>
+
+<div class="bm-layout">
+
+    {% if user.is_authenticated %}
+
+    <aside class="bm-sidebar">
+
+        <div class="bm-sidebar-header">
+            <a href="{% url 'core:dashboard' %}">
+                <img
+                    src="{% static 'img/logo biomedica-Photoroom.png' %}"
+                    alt="Biomédica Río Cuarto"
+                    class="bm-sidebar-logo"
+                >
+            </a>
+
+            <p class="bm-sidebar-title">
+                Sistema de gestión de inventario
+            </p>
+        </div>
+
+        <nav class="bm-menu" aria-label="Menú principal">
+
+            <a href="{% url 'core:dashboard' %}"
+               class="bm-menu-link {% if request.resolver_match.namespace == 'core' %}active{% endif %}">
+                <span class="bm-menu-icon">⌂</span>
+                Inicio
+            </a>
+
+            <a href="{% url 'catalog:producto_list' %}"
+               class="bm-menu-link {% if request.resolver_match.namespace == 'catalog' %}active{% endif %}">
+                <span class="bm-menu-icon">▦</span>
+                Productos
+            </a>
+
+            <a href="/proveedores/"
+               class="bm-menu-link {% if request.resolver_match.namespace == 'suppliers' %}active{% endif %}">
+                <span class="bm-menu-icon">▤</span>
+                Proveedores
+            </a>
+
+            <a href="{% url 'inventory:lote_list' %}"
+               class="bm-menu-link {% if request.resolver_match.namespace == 'inventory' %}active{% endif %}">
+                <span class="bm-menu-icon">▣</span>
+                Lotes
+            </a>
+
+            <a href="{% url 'documentos:presupuesto_list' %}"
+               class="bm-menu-link {% if request.resolver_match.url_name == 'presupuesto_list' or request.resolver_match.url_name == 'presupuesto_crear' %}active{% endif %}">
+                <span class="bm-menu-icon">▤</span>
+                Presupuestos
+            </a>
+
+            <a href="{% url 'documentos:remito_list' %}"
+               class="bm-menu-link {% if request.resolver_match.url_name == 'remito_list' or request.resolver_match.url_name == 'remito_crear' %}active{% endif %}">
+                <span class="bm-menu-icon">▤</span>
+                Remitos
+            </a>
+
+            <a href="{% url 'admin:index' %}" class="bm-menu-link">
+                <span class="bm-menu-icon">⚙</span>
+                Administración
+            </a>
+
+        </nav>
+
+        <div class="bm-sidebar-footer">
+
+            <p class="small text-muted mb-3">
+                Usuario: <strong>{{ user.username }}</strong>
+            </p>
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="bm-logout">
+                    Cerrar sesión
+                </button>
+            </form>
+
+        </div>
+
+    </aside>
+
+    {% endif %}
+
+    <main class="bm-main">
+
+        {% for m in messages %}
+            <div class="alert alert-{{ m.tags|default:'info' }}" role="alert">
+                {{ m }}
+            </div>
+        {% endfor %}
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

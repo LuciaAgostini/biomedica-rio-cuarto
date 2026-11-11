@@ -10,6 +10,8 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("productos/", include("apps.catalog.urls")),
     path("proveedores/", include("apps.suppliers.urls")),
+    path("inventario/", include("apps.inventory.urls")),
+    path("documentos/", include("apps.documentos.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
 ]

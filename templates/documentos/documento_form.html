@@ -1,0 +1,393 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if tipo_documento == "PRESUPUESTO" %}
+        Nuevo presupuesto
+    {% elif tipo_documento == "REMITO" %}
+        Nuevo remito
+    {% else %}
+        Nuevo documento
+    {% endif %}
+    | Biomédica Río Cuarto
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-3">
+
+    <div class="mb-4">
+        <h2 class="fw-bold" style="color: #d85b0b;">
+            {% if tipo_documento == "PRESUPUESTO" %}
+                Nuevo presupuesto
+            {% elif tipo_documento == "REMITO" %}
+                Nuevo remito
+            {% else %}
+                Nuevo documento
+            {% endif %}
+        </h2>
+
+        <p class="text-muted">
+            Seleccioná el vendedor, completá los datos del cliente y agregá los productos.
+        </p>
+    </div>
+
+    <form method="post" id="documento-form">
+        {% csrf_token %}
+
+        {% if formulario.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ formulario.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header fw-bold"
+                 style="background-color: #fff0df; color: #b84c08;">
+                Datos del documento
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ formulario.vendedor.id_for_label }}">
+                            {{ formulario.vendedor.label }}
+                        </label>
+                        {{ formulario.vendedor }}
+                        {{ formulario.vendedor.errors }}
+                    </div>
+
+                    {% if tipo_documento %}
+                        {{ formulario.tipo }}
+                        {{ formulario.tipo.errors }}
+                    {% else %}
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ formulario.tipo.id_for_label }}">
+                                {{ formulario.tipo.label }}
+                            </label>
+                            {{ formulario.tipo }}
+                            {{ formulario.tipo.errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ formulario.tipo_iva.id_for_label }}">
+                            {{ formulario.tipo_iva.label }}
+                        </label>
+                        {{ formulario.tipo_iva }}
+                        {{ formulario.tipo_iva.errors }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ formulario.porcentaje_iva.id_for_label }}">
+                            {{ formulario.porcentaje_iva.label }}
+                        </label>
+                        {{ formulario.porcentaje_iva }}
+                        {{ formulario.porcentaje_iva.errors }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header fw-bold"
+                 style="background-color: #fff0df; color: #b84c08;">
+                Datos del cliente
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ formulario.cliente_nombre.id_for_label }}">
+                            {{ formulario.cliente_nombre.label }}
+                        </label>
+                        {{ formulario.cliente_nombre }}
+                        {{ formulario.cliente_nombre.errors }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ formulario.cliente_cuil.id_for_label }}">
+                            {{ formulario.cliente_cuil.label }}
+                        </label>
+                        {{ formulario.cliente_cuil }}
+                        {{ formulario.cliente_cuil.errors }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ formulario.cliente_localidad.id_for_label }}">
+                            {{ formulario.cliente_localidad.label }}
+                        </label>
+                        {{ formulario.cliente_localidad }}
+                        {{ formulario.cliente_localidad.errors }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+
+            <div class="card-header d-flex justify-content-between align-items-center"
+                 style="background-color: #fff0df; color: #b84c08;">
+
+                <span class="fw-bold">Productos</span>
+
+                <button
+                    type="button"
+                    class="btn btn-sm btn-outline-warning"
+                    id="agregar-producto">
+                    + Agregar producto
+                </button>
+
+            </div>
+
+            <div class="card-body">
+
+                {{ productos_formulario.management_form }}
+
+                {% if productos_formulario.non_form_errors %}
+                    <div class="alert alert-danger">
+                        {{ productos_formulario.non_form_errors }}
+                    </div>
+                {% endif %}
+
+                <div id="lista-productos">
+
+                    {% for item in productos_formulario %}
+
+                        <div class="row g-3 align-items-end border-bottom pb-3 mb-3 producto-fila">
+
+                            <div class="col-md-5">
+                                <label class="form-label" for="{{ item.producto.id_for_label }}">
+                                    Producto
+                                </label>
+                                {{ item.producto }}
+                                {{ item.producto.errors }}
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label" for="{{ item.cantidad.id_for_label }}">
+                                    Cantidad
+                                </label>
+                                {{ item.cantidad }}
+                                {{ item.cantidad.errors }}
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="{{ item.precio_unitario.id_for_label }}">
+                                    Precio unitario
+                                </label>
+                                {{ item.precio_unitario }}
+                                {{ item.precio_unitario.errors }}
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-check mb-2">
+                                    {{ item.DELETE }}
+                                    <label
+                                        class="form-check-label"
+                                        for="{{ item.DELETE.id_for_label }}">
+                                        Quitar
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <template id="producto-vacio">
+
+                    <div class="row g-3 align-items-end border-bottom pb-3 mb-3 producto-fila">
+
+                        <div class="col-md-5">
+                            <label class="form-label">
+                                Producto
+                            </label>
+                            {{ productos_formulario.empty_form.producto }}
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label">
+                                Cantidad
+                            </label>
+                            {{ productos_formulario.empty_form.cantidad }}
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">
+                                Precio unitario
+                            </label>
+                            {{ productos_formulario.empty_form.precio_unitario }}
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-check mb-2">
+                                {{ productos_formulario.empty_form.DELETE }}
+                                <label class="form-check-label">
+                                    Quitar
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </template>
+
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+
+            <div class="card-body text-end">
+
+                <p class="mb-2">
+                    Subtotal:
+                    <strong id="subtotal">$ 0,00</strong>
+                </p>
+
+                <p class="mb-2">
+                    IVA:
+                    <strong id="importe-iva">$ 0,00</strong>
+                </p>
+
+                <h4 class="fw-bold" style="color: #d85b0b;">
+                    Total:
+                    <span id="total">$ 0,00</span>
+                </h4>
+
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+
+            <a
+                {% if tipo_documento == "PRESUPUESTO" %}
+                    href="{% url 'documentos:presupuesto_list' %}"
+                {% elif tipo_documento == "REMITO" %}
+                    href="{% url 'documentos:remito_list' %}"
+                {% else %}
+                    href="{% url 'core:dashboard' %}"
+                {% endif %}
+                class="btn btn-outline-secondary">
+                Cancelar
+            </a>
+
+            <button
+                type="submit"
+                class="btn text-white"
+                style="background-color: #f26a0f;">
+
+                {% if tipo_documento == "PRESUPUESTO" %}
+                    Guardar presupuesto
+                {% elif tipo_documento == "REMITO" %}
+                    Guardar remito
+                {% else %}
+                    Guardar documento
+                {% endif %}
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const lista = document.getElementById("lista-productos");
+    const agregar = document.getElementById("agregar-producto");
+    const plantilla = document.getElementById("producto-vacio");
+    const totalForms = document.getElementById("id_productos-TOTAL_FORMS");
+
+    const tipoIVA = document.getElementById("id_tipo_iva");
+    const porcentajeIVA = document.getElementById("id_porcentaje_iva");
+
+    const moneda = new Intl.NumberFormat("es-AR", {
+        style: "currency",
+        currency: "ARS"
+    });
+
+    function calcularTotales() {
+
+        let subtotal = 0;
+
+        document.querySelectorAll(".producto-fila").forEach(function (fila) {
+
+            const cantidad = fila.querySelector('input[name$="-cantidad"]');
+            const precio = fila.querySelector('input[name$="-precio_unitario"]');
+            const eliminar = fila.querySelector('input[name$="-DELETE"]');
+
+            if (!cantidad || !precio || (eliminar && eliminar.checked)) {
+                return;
+            }
+
+            const unidades = Number(cantidad.value) || 0;
+            const importe = Number(precio.value) || 0;
+
+            subtotal += unidades * importe;
+        });
+
+        const porcentaje = Number(porcentajeIVA.value) || 0;
+
+        let iva = 0;
+        let total = subtotal;
+
+        if (tipoIVA.value === "DISCRIMINADO") {
+            iva = subtotal * porcentaje / 100;
+            total = subtotal + iva;
+        }
+
+        if (tipoIVA.value === "INCLUIDO") {
+            iva = subtotal - subtotal / (1 + porcentaje / 100);
+        }
+
+        document.getElementById("subtotal").textContent =
+            moneda.format(subtotal);
+
+        document.getElementById("importe-iva").textContent =
+            moneda.format(iva);
+
+        document.getElementById("total").textContent =
+            moneda.format(total);
+    }
+
+    agregar.addEventListener("click", function () {
+
+        const indice = Number(totalForms.value);
+
+        const contenido = plantilla.innerHTML.replaceAll(
+            "__prefix__",
+            indice
+        );
+
+        lista.insertAdjacentHTML("beforeend", contenido);
+
+        totalForms.value = indice + 1;
+
+        calcularTotales();
+    });
+
+    document.getElementById("documento-form").addEventListener(
+        "input",
+        calcularTotales
+    );
+
+    document.getElementById("documento-form").addEventListener(
+        "change",
+        calcularTotales
+    );
+
+    calcularTotales();
+
+});
+</script>
+
+{% endblock %}

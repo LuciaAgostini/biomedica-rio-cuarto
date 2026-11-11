@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}Proveedores | Biomédica Río Cuarto{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-3">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold" style="color: #d85b0b;">
+                Proveedores
+            </h2>
+            <p class="text-muted mb-0">
+                Administración de proveedores de insumos médicos.
+            </p>
+        </div>
+
+        <a href="{% url 'suppliers:crear' %}"
+           class="btn text-white"
+           style="background-color: #f26a0f;">
+            + Nuevo proveedor
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+
+            <form method="get" class="row g-3 align-items-end">
+
+                <div class="col-md-6">
+                    <label class="form-label">Buscar proveedor</label>
+                    <input
+                        type="text"
+                        name="q"
+                        class="form-control"
+                        placeholder="Razón social o CUIT"
+                        value="{{ busqueda }}"
+                    >
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Estado</label>
+                    <select name="estado" class="form-select">
+                        <option value="todos" {% if estado == "todos" %}selected{% endif %}>
+                            Todos
+                        </option>
+                        <option value="activos" {% if estado == "activos" %}selected{% endif %}>
+                            Activos
+                        </option>
+                        <option value="inactivos" {% if estado == "inactivos" %}selected{% endif %}>
+                            Inactivos
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 d-flex gap-2">
+                    <button type="submit"
+                            class="btn text-white"
+                            style="background-color: #f26a0f;">
+                        Buscar
+                    </button>
+
+                    <a href="{% url 'suppliers:lista' %}"
+                       class="btn btn-outline-secondary">
+                        Limpiar
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-header fw-bold"
+             style="background-color: #fff0df; color: #b84c08;">
+            Listado de proveedores
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>Razón social</th>
+                            <th>CUIT</th>
+                            <th>Teléfono</th>
+                            <th>Localidad</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for proveedor in proveedores %}
+
+                        <tr>
+                            <td>{{ proveedor.razon_social }}</td>
+                            <td>{{ proveedor.cuit }}</td>
+                            <td>{{ proveedor.telefono|default:"-" }}</td>
+                            <td>{{ proveedor.localidad|default:"-" }}</td>
+
+                            <td>
+                                {% if proveedor.activo %}
+                                    <span class="badge bg-success">
+                                        Activo
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary">
+                                        Inactivo
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <div class="d-flex gap-2 flex-wrap">
+
+                                    <a href="{% url 'suppliers:editar' proveedor.pk %}"
+                                       class="btn btn-sm btn-outline-primary">
+                                        Editar
+                                    </a>
+
+                                    {% if proveedor.activo %}
+
+                                        <form method="post"
+                                              action="{% url 'suppliers:inactivar' proveedor.pk %}">
+                                            {% csrf_token %}
+
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-outline-danger"
+                                                    onclick="return confirm('¿Querés inactivar este proveedor?');">
+                                                Inactivar
+                                            </button>
+                                        </form>
+
+                                    {% else %}
+
+                                        <form method="post"
+                                              action="{% url 'suppliers:activar' proveedor.pk %}">
+                                            {% csrf_token %}
+
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-outline-success">
+                                                Activar
+                                            </button>
+                                        </form>
+
+                                    {% endif %}
+
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                No se encontraron proveedores.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% if is_paginated %}
+
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?page={{ page_obj.previous_page_number }}&q={{ busqueda|urlencode }}&estado={{ estado }}">
+                                    Anterior
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li class="page-item active">
+                            <span class="page-link">
+                                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                            </span>
+                        </li>
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?page={{ page_obj.next_page_number }}&q={{ busqueda|urlencode }}&estado={{ estado }}">
+                                    Siguiente
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
