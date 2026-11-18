@@ -228,6 +228,21 @@ Biomédica Río Cuarto cuenta con funcionalidades operativas para gestionar prod
 
 Actualmente se encuentra en etapa de revisión y preparación para su entrega final.
 
+<img width="676" height="913" alt="Imagen pegada (13)" src="https://github.com/user-attachments/assets/723af448-0ce7-43c9-8038-c49f54253cdb" />
+<img width="1854" height="1048" alt="Imagen pegada (12)" src="https://github.com/user-attachments/assets/ec3d0fb9-e3ac-41eb-a02d-b10886797af7" />
+<img width="1854" height="1048" alt="Imagen pegada (11)" src="https://github.com/user-attachments/assets/af3d405a-a345-40ff-8d04-6e70f9fdc2f8" />
+<img width="1854" height="1048" alt="Imagen pegada (10)" src="https://github.com/user-attachments/assets/ed5ce6c2-bfbc-47d0-9e0c-a6083b421b8c" />
+<img width="1854" height="1048" alt="Imagen pegada (9)" src="https://github.com/user-attachments/assets/31ebc7fa-5dc0-4d1c-be56-39b3f7ab0e5b" />
+<img width="1854" height="1048" alt="Imagen pegada (8)" src="https://github.com/user-attachments/assets/ca66239a-6a25-4359-9edc-f8ed8644be1f" />
+<img width="1600" height="295" alt="Imagen pegada (7)" src="https://github.com/user-attachments/assets/e23fa56e-8439-477f-9e07-bf8f7d6858ee" />
+<img width="1854" height="1048" alt="Imagen pegada (6)" src="https://github.com/user-attachments/assets/e98d486d-dfa2-45b1-9fef-eef7247a3131" />
+<img width="1854" height="1048" alt="Imagen pegada (5)" src="https://github.com/user-attachments/assets/03a5d6bb-f36c-412c-8a56-82ad2744b7f1" />
+<img width="1854" height="1048" alt="Imagen pegada (4)" src="https://github.com/user-attachments/assets/e79da491-792b-4ff4-b587-f65660f7d750" />
+<img width="1854" height="1048" alt="Imagen pegada (3)" src="https://github.com/user-attachments/assets/fb856313-5d07-4565-845a-b75e9776a152" />
+<img width="1854" height="1048" alt="Imagen pegada (2)" src="https://github.com/user-attachments/assets/df3f849a-da2e-4737-adbe-0babce11d214" />
+<img width="1854" height="1048" alt="Imagen pegada" src="https://github.com/user-attachments/assets/f952a9e2-1356-4f66-ada1-d3ad92c3709d" />
+
+
 ## Información académica
 
 **Proyecto:** Biomédica Río Cuarto  
